@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PlateRate.Application.Restaurants;
+using PlateRate.Application.Restaurants.Dtos;
 using PlateRate.Domain.Repositories;
 
 namespace PlateRate.API.Controllers;
@@ -24,5 +25,12 @@ public class RestaurantsController(IRestaurantsService restaurantsService) : Con
             return NotFound();
         }
         return Ok(restaurant);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> CreateRestaurant([FromBody] CreateRestaurantDto createRestaurantDto)
+    {
+        int id = await restaurantsService.CreateAsync(createRestaurantDto);
+        return CreatedAtAction(nameof(GetById), new {id},null);
     }
 }

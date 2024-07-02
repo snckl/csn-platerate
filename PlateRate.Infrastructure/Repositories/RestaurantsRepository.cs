@@ -28,4 +28,11 @@ internal class RestaurantsRepository(PlateRateDbContext dbContext) : IRestaurant
 
         return restaurant;
     }
+
+    public async Task<int> CreateAsync(Restaurant entity)
+    {
+        dbContext.Restaurants.Add(entity);
+        await dbContext.SaveChangesAsync();
+        return entity.Id;
+    }
 }
