@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PlateRate.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using PlateRate.Infrastructure.Persistence;
 namespace PlateRate.Infrastructure.Migrations
 {
     [DbContext(typeof(PlateRateDbContext))]
-    partial class PlateRateDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240702174629_KiloCaloriesAddedToDish")]
+    partial class KiloCaloriesAddedToDish
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
