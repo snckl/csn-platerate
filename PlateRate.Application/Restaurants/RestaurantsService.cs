@@ -12,4 +12,11 @@ internal class RestaurantsService(IRestaurantRepository restaurantRepository, IL
         var restaurants = await restaurantRepository.GetAllAsync();
         return restaurants;
     }
+
+    public async Task<Restaurant?> GetByIdAsync(int id)
+    {
+        logger.LogInformation($"Getting restaurant with ID: {id}");
+        var restaurant = await restaurantRepository.GetByIdAsync(id);
+        return restaurant;
+    }
 }
