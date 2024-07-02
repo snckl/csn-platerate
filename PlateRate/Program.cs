@@ -1,7 +1,10 @@
+using PlateRate.Infrastructure.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Services
 builder.Services.AddControllers();
+builder.Services.AddInfrastructure(builder.Configuration);    
 
 // Swagger
 builder.Services.AddEndpointsApiExplorer();

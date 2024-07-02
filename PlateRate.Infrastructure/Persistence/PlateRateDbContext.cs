@@ -3,15 +3,11 @@ using PlateRate.Domain.Entities;
 
 namespace PlateRate.Infrastructure.Persistence;
 
-internal class PlateRateDbContext : DbContext
+internal class PlateRateDbContext(DbContextOptions<PlateRateDbContext> options) : DbContext(options)
 {
     internal DbSet<Restaurant> Restaurants { get; set; }
     internal DbSet<Dish> Dishes { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlServer("Server=sinan;Database=PlateRate;Integrated Security=True;TrustServerCertificate=True;");
-    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
