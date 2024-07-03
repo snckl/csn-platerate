@@ -14,17 +14,19 @@ builder.Host.UseSerilog((context,configuration) =>
 {
     configuration.ReadFrom.Configuration(context.Configuration);
 });
-builder.Services.AddScoped<ErrorHandlingMiddleware>();
+builder.Services.AddScoped<ErrorHandlingMiddleWare>();
+builder.Services.AddScoped<RequestTimeLoggingMiddleWare>();
+
 
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
 var scope = app.Services.CreateScope();
 var seeder = scope.ServiceProvider.GetRequiredService<IRestaurantSeeder>();
 await seeder.Seed();
+
 
 // Pipeline
 if (app.Environment.IsDevelopment())
@@ -33,7 +35,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseMiddleware<ErrorHandlingMiddleware>();
+app.UseMiddleware<ErrorHandlingMiddleWare>();
+app.UseMiddleware<RequestTimeLoggingMiddleWare>();
 app.UseSerilogRequestLogging();
 app.UseHttpsRedirection();
 app.UseAuthorization();
