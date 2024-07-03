@@ -14,12 +14,11 @@ builder.Host.UseSerilog((context,configuration) =>
 {
     configuration.ReadFrom.Configuration(context.Configuration);
 });
+builder.Services.AddScoped<ErrorHandlingMiddleware>();
 
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<ErrorHandlingMiddleware>();
-
 
 var app = builder.Build();
 
