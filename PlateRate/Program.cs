@@ -1,3 +1,4 @@
+using PlateRate.API.Middlewares;
 using PlateRate.Application.Extensions;
 using PlateRate.Infrastructure.Extensions;
 using PlateRate.Infrastructure.Seeders;
@@ -17,6 +18,7 @@ builder.Host.UseSerilog((context,configuration) =>
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<ErrorHandlingMiddleware>();
 
 
 var app = builder.Build();
@@ -32,6 +34,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseSerilogRequestLogging();
 app.UseHttpsRedirection();
 app.UseAuthorization();

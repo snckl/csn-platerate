@@ -1,20 +1,21 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
+using PlateRate.Domain.Entities;
+using PlateRate.Domain.Exceptions;
 using PlateRate.Domain.Repositories;
 
 namespace PlateRate.Application.Restaurants.Commands.DeleteRestaurant;
 public class DeleteRestaurantCommandHandler(ILogger<DeleteRestaurantCommandHandler> logger
-    ,IRestaurantRepository restaurantRepository) : IRequestHandler<DeleteRestaurantCommand,bool>
+    ,IRestaurantRepository restaurantRepository) : IRequestHandler<DeleteRestaurantCommand>
 {
-    public async Task<bool> Handle(DeleteRestaurantCommand request, CancellationToken cancellationToken)
+    public async Task Handle(DeleteRestaurantCommand request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Deleting restaurant by ID: {RestaurantId}",request.Id);
         var restaurant = await restaurantRepository.GetByIdAsync( request.Id );
         if (restaurant is null)
         {
-            return false;
+            throw new NotFoundException(nameof(Restaurant),request.Id.ToString());
         }
         await restaurantRepository.DeleteAsync(restaurant);
-        return true;
     }
 }
