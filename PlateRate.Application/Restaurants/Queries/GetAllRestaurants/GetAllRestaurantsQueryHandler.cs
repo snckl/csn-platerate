@@ -5,8 +5,8 @@ using PlateRate.Application.Restaurants.Dtos;
 using PlateRate.Domain.Repositories;
 
 namespace PlateRate.Application.Restaurants.Queries.GetAllRestaurants;
-public class GetAllRestaurantsQueryHandler(ILogger<GetAllRestaurantsQueryHandler> logger,
-    IMapper mapper,IRestaurantRepository restaurantRepository) : IRequestHandler<GetAllRestaurantsQuery, IEnumerable<RestaurantDto>>
+public class GetAllRestaurantsQueryHandler(ILogger<GetAllRestaurantsQueryHandler> logger
+    ,IMapper mapper,IRestaurantRepository restaurantRepository) : IRequestHandler<GetAllRestaurantsQuery, IEnumerable<RestaurantDto>>
 {
     public async Task<IEnumerable<RestaurantDto>> Handle(GetAllRestaurantsQuery request, CancellationToken cancellationToken)
     {

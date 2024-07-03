@@ -3,8 +3,8 @@ using Microsoft.Extensions.Logging;
 using PlateRate.Domain.Repositories;
 
 namespace PlateRate.Application.Restaurants.Commands.DeleteRestaurant;
-public class DeleteRestaurantCommandHandler(ILogger<DeleteRestaurantCommandHandler> logger,
-    IRestaurantRepository restaurantRepository) : IRequestHandler<DeleteRestaurantCommand,bool>
+public class DeleteRestaurantCommandHandler(ILogger<DeleteRestaurantCommandHandler> logger
+    ,IRestaurantRepository restaurantRepository) : IRequestHandler<DeleteRestaurantCommand,bool>
 {
     public async Task<bool> Handle(DeleteRestaurantCommand request, CancellationToken cancellationToken)
     {

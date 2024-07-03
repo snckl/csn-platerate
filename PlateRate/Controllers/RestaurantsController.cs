@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PlateRate.Application.Restaurants;
 using PlateRate.Application.Restaurants.Commands.CreateRestaurant;
 using PlateRate.Application.Restaurants.Commands.DeleteRestaurant;
+using PlateRate.Application.Restaurants.Commands.UpdateRestaurant;
 using PlateRate.Application.Restaurants.Dtos;
 using PlateRate.Application.Restaurants.Queries.GetAllRestaurants;
 using PlateRate.Application.Restaurants.Queries.GetRestaurantById;
@@ -50,6 +51,19 @@ public class RestaurantsController(IMediator mediator) : ControllerBase
         }
 
         return NotFound();
+    }
 
+    [HttpPatch("{id:int}")]
+    public async Task<IActionResult> UpdateRestaurant([FromRoute] int id,[FromBody] UpdateRestaurantCommand command)
+    {
+        command.Id = id;
+        bool isUpdated = await mediator.Send(command);
+
+        if (isUpdated)
+        {
+            return NoContent();
+        }
+
+        return NotFound();
     }
 }

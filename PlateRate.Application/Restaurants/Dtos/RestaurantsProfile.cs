@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using PlateRate.Application.Restaurants.Commands.CreateRestaurant;
+using PlateRate.Application.Restaurants.Commands.UpdateRestaurant;
 using PlateRate.Domain.Entities;
 
 namespace PlateRate.Application.Restaurants.Dtos;
@@ -7,6 +8,7 @@ public class RestaurantsProfile : Profile
 {
     public RestaurantsProfile()
     {
+        CreateMap<UpdateRestaurantCommand, Restaurant>();
         CreateMap<CreateRestaurantCommand, Restaurant>()
             .ForMember(d => d.Address, opt => opt.MapFrom(
                 src => new Address
