@@ -3,25 +3,17 @@ using PlateRate.Application.Extensions;
 using PlateRate.Domain.Entities;
 using PlateRate.Infrastructure.Extensions;
 using PlateRate.Infrastructure.Seeders;
+using Microsoft.OpenApi.Models;
 using Serilog;
+using PlateRate.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Services
-builder.Services.AddControllers();
-builder.Services.AddInfrastructure(builder.Configuration);
+builder.AddPresentation();
 builder.Services.AddApplication();
-builder.Host.UseSerilog((context,configuration) =>
-{
-    configuration.ReadFrom.Configuration(context.Configuration);
-});
-builder.Services.AddScoped<ErrorHandlingMiddleWare>();
-builder.Services.AddScoped<RequestTimeLoggingMiddleWare>();
+builder.Services.AddInfrastructure(builder.Configuration);
 
-
-// Swagger
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 var scope = app.Services.CreateScope();
@@ -43,7 +35,7 @@ app.UseSerilogRequestLogging();
 
 app.UseHttpsRedirection();
 
-app.MapIdentityApi<User>();
+app.MapGroup("api/identity").MapIdentityApi<User>();
 
 app.UseAuthorization();
 
