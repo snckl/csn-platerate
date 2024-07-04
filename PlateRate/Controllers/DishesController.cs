@@ -14,6 +14,7 @@ namespace PlateRate.API.Controllers;
 public class DishesController(IMediator mediator) : ControllerBase
 {
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
     public async Task<IActionResult> CreateDish([FromRoute]int restaurantId,CreateDishCommand command)
     {
         command.RestaurantId = restaurantId;
@@ -22,6 +23,7 @@ public class DishesController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<IEnumerable<DishDto>>> GetAll([FromRoute] int restaurantId)
     {
         var dishes = await mediator.Send(new GetAllDishesQuery(restaurantId));
@@ -29,6 +31,8 @@ public class DishesController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet("{dishId:int}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<DishDto>> GetDishById([FromRoute] int restaurantId, [FromRoute] int dishId)
     {
         var dish = await mediator.Send(new GetDishByIdQuery(restaurantId,dishId));
@@ -36,6 +40,8 @@ public class DishesController(IMediator mediator) : ControllerBase
     }
 
     [HttpDelete]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteDishes([FromRoute] int restaurantId)
     {
         await mediator.Send(new DeleteDishesCommand(restaurantId));
