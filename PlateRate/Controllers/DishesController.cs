@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PlateRate.Application.Dishes.Commands.CreateDish;
+using PlateRate.Application.Dishes.Commands.DeleteDishes;
 using PlateRate.Application.Dishes.Queries.GetAllDishes;
 using PlateRate.Application.Dishes.Queries.GetDishById;
 using PlateRate.Application.Restaurants.Dtos;
@@ -32,5 +33,12 @@ public class DishesController(IMediator mediator) : ControllerBase
     {
         var dish = await mediator.Send(new GetDishByIdQuery(restaurantId,dishId));
         return Ok(dish);
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> DeleteDishes([FromRoute] int restaurantId)
+    {
+        await mediator.Send(new DeleteDishesCommand(restaurantId));
+        return NoContent();
     }
 }
