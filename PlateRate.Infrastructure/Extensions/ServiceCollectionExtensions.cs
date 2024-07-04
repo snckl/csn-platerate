@@ -14,5 +14,6 @@ public static class ServiceCollectionExtensions
         services.AddDbContext<PlateRateDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("PlateRateDb")).EnableSensitiveDataLogging());
         services.AddScoped<IRestaurantSeeder, RestaurantSeeder>();
         services.AddScoped<IRestaurantRepository, RestaurantsRepository>();
+        services.AddScoped<IDishRepository, DishesRepository>();
     }
 }
