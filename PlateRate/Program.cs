@@ -1,5 +1,6 @@
 using PlateRate.API.Middlewares;
 using PlateRate.Application.Extensions;
+using PlateRate.Domain.Entities;
 using PlateRate.Infrastructure.Extensions;
 using PlateRate.Infrastructure.Seeders;
 using Serilog;
@@ -31,15 +32,21 @@ await seeder.Seed();
 // Pipeline
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
+    app.UseSwagger();   
     app.UseSwaggerUI();
 }
 
 app.UseMiddleware<ErrorHandlingMiddleWare>();
 app.UseMiddleware<RequestTimeLoggingMiddleWare>();
+
 app.UseSerilogRequestLogging();
+
 app.UseHttpsRedirection();
+
+app.MapIdentityApi<User>();
+
 app.UseAuthorization();
+
 app.MapControllers();
 
 app.Run();

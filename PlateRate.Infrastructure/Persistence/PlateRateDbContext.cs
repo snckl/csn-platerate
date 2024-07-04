@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using PlateRate.Domain.Entities;
 
 namespace PlateRate.Infrastructure.Persistence;
 
-internal class PlateRateDbContext(DbContextOptions<PlateRateDbContext> options) : DbContext(options)
+internal class PlateRateDbContext(DbContextOptions<PlateRateDbContext> options) : IdentityDbContext<User>(options)
 {
     internal DbSet<Restaurant> Restaurants { get; set; }
     internal DbSet<Dish> Dishes { get; set; }
