@@ -17,13 +17,4 @@ internal class DishesRepository(PlateRateDbContext dbContext) : IDishRepository
         throw new NotImplementedException();
     }
 
-    public async Task<Dish?> GetByIdAsync(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public async Task SaveAsync()
-    {
-        throw new NotImplementedException();
-    }
 }
