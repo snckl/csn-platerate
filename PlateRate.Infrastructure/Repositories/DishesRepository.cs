@@ -12,9 +12,10 @@ internal class DishesRepository(PlateRateDbContext dbContext) : IDishRepository
         return entity.Id;
     }
 
-    public async Task DeleteAsync(Dish dish)
+    public async Task DeleteAsync(IEnumerable<Dish> dishes)
     {
-        throw new NotImplementedException();
+        dbContext.Dishes.RemoveRange(dishes);
+        await dbContext.SaveChangesAsync();
     }
 
 }

@@ -11,17 +11,16 @@ using System.Threading.Tasks;
 
 namespace PlateRate.Application.Dishes.Commands.DeleteDishes;
 internal class DeleteDishesCommandHandler(ILogger<DeleteDishesCommandHandler> logger
-    ,IRestaurantRepository restaurantRepository) : IRequestHandler<DeleteDishesCommand>
+    ,IRestaurantRepository restaurantRepository,IDishRepository dishRepository) : IRequestHandler<DeleteDishesCommand>
 {
     public async Task Handle(DeleteDishesCommand request, CancellationToken cancellationToken)
     {
-        logger.LogInformation("Deleting all dishes of restaurant with Id: {restaurantId}",request.RestaurantId);
+        logger.LogWarning("Deleting all dishes of restaurant with Id: {restaurantId}",request.RestaurantId);
         var restraurant = await restaurantRepository.GetByIdAsync(request.RestaurantId);
         if (restraurant is null)
         {
             throw new NotFoundException(nameof(Restaurant),request.RestaurantId.ToString());
         }
-        restraurant.Dishes.Clear();
-        await restaurantRepository.SaveAsync();
+        await dishRepository.DeleteAsync(restraurant.Dishes);
     }
 }

@@ -9,5 +9,5 @@ namespace PlateRate.Domain.Repositories;
 public interface IDishRepository
 {
     Task<int> CreateAsync(Dish entity);
-    Task DeleteAsync(Dish dish);
+    Task DeleteAsync(IEnumerable<Dish> dishes);
 }
