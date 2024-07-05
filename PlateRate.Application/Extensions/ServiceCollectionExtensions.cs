@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
-using PlateRate.Application.Restaurants;
 using PlateRate.Application.User;
 
 namespace PlateRate.Application.Extensions;
@@ -13,9 +12,9 @@ public static class ServiceCollectionExtensions
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(applicationAssembly));
         services.AddAutoMapper(applicationAssembly);
         services.AddValidatorsFromAssembly(applicationAssembly)
-            .AddFluentValidationAutoValidation();
-        services.AddHttpContextAccessor();
+            .AddFluentValidationAutoValidation();      
         services.AddScoped<IUserContext,UserContext>();
-        
+        services.AddHttpContextAccessor();
+
     }
 }
