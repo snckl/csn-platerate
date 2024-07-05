@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PlateRate.Application.Dishes.Commands.CreateDish;
 using PlateRate.Application.Dishes.Commands.DeleteDishes;
@@ -10,6 +11,7 @@ using PlateRate.Application.Restaurants.Queries.GetAllRestaurants;
 namespace PlateRate.API.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/restaurants/{restaurantId}/[controller]")]
 public class DishesController(IMediator mediator) : ControllerBase
 {
@@ -24,6 +26,7 @@ public class DishesController(IMediator mediator) : ControllerBase
 
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
+    [AllowAnonymous]
     public async Task<ActionResult<IEnumerable<DishDto>>> GetAll([FromRoute] int restaurantId)
     {
         var dishes = await mediator.Send(new GetAllDishesQuery(restaurantId));
@@ -33,6 +36,7 @@ public class DishesController(IMediator mediator) : ControllerBase
     [HttpGet("{dishId:int}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [AllowAnonymous]
     public async Task<ActionResult<DishDto>> GetDishById([FromRoute] int restaurantId, [FromRoute] int dishId)
     {
         var dish = await mediator.Send(new GetDishByIdQuery(restaurantId,dishId));
