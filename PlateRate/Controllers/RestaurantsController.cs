@@ -8,6 +8,7 @@ using PlateRate.Application.Restaurants.Commands.UpdateRestaurant;
 using PlateRate.Application.Restaurants.Dtos;
 using PlateRate.Application.Restaurants.Queries.GetAllRestaurants;
 using PlateRate.Application.Restaurants.Queries.GetRestaurantById;
+using PlateRate.Domain.Constants;
 
 namespace PlateRate.API.Controllers;
 
@@ -33,6 +34,7 @@ public class RestaurantsController(IMediator mediator) : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = UserRoles.Owner)]
     public async Task<IActionResult> CreateRestaurant([FromBody] CreateRestaurantCommand command)
     {
         int id = await mediator.Send(command);

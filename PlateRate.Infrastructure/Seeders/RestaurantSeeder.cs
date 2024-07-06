@@ -1,4 +1,6 @@
-﻿using PlateRate.Domain.Entities;
+﻿using Microsoft.AspNetCore.Identity;
+using PlateRate.Domain.Constants;
+using PlateRate.Domain.Entities;
 using PlateRate.Infrastructure.Persistence;
 
 namespace PlateRate.Infrastructure.Seeders;
@@ -13,7 +15,26 @@ internal class RestaurantSeeder(PlateRateDbContext dbContext) : IRestaurantSeede
                 dbContext.Restaurants.AddRange(GetRestaurants());
                 await dbContext.SaveChangesAsync();
             }
+
+            if (!dbContext.Roles.Any())
+            {
+                dbContext.Roles.AddRange(GetRoles());
+                await dbContext.SaveChangesAsync();
+            }
+
         }
+    }
+
+    private IEnumerable<IdentityRole> GetRoles()
+    {
+        List<IdentityRole> roles =
+            [
+                new (UserRoles.User),
+                new (UserRoles.Owner),
+                new (UserRoles.Admin)
+            ];
+
+        return roles;
     }
 
     private IEnumerable<Restaurant> GetRestaurants()
