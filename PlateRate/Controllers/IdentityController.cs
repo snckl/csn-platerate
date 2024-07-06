@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PlateRate.Application.User.Commands.AssignUserRole;
+using PlateRate.Application.User.Commands.DeleteUserRole;
 using PlateRate.Application.User.Commands.UpdateUserDetials;
 using PlateRate.Domain.Constants;
 
@@ -19,9 +20,17 @@ public class IdentityController(IMediator mediator) : ControllerBase
         return NoContent();
     }
 
-    [HttpPost("userRole")]
+    [HttpPost("assignRole")]
     [Authorize(Roles = UserRoles.Admin)] 
     public async Task<IActionResult> AssignUserRole(AssignUserRoleCommand command)
+    {
+        await mediator.Send(command);
+        return NoContent();
+    }
+
+    [HttpDelete("unassignRole")]
+    [Authorize(Roles = UserRoles.Admin)]
+    public async Task<IActionResult> UnassignsUserRole(DeleteUserRoleCommand command)
     {
         await mediator.Send(command);
         return NoContent();
