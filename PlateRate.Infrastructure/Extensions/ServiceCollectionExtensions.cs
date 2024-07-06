@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,5 +24,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IRestaurantSeeder, RestaurantSeeder>();
         services.AddScoped<IRestaurantRepository, RestaurantsRepository>();
         services.AddScoped<IDishRepository, DishesRepository>();
+        services.AddAuthorizationBuilder()
+           .AddPolicy(PolicyNames.HasNationality,builder => builder.RequireClaim(AppClaimTypes.Nationality));
     }
 }
