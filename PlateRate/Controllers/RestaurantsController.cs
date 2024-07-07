@@ -1,7 +1,6 @@
 ﻿    using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PlateRate.Application.Restaurants;
 using PlateRate.Application.Restaurants.Commands.CreateRestaurant;
 using PlateRate.Application.Restaurants.Commands.DeleteRestaurant;
 using PlateRate.Application.Restaurants.Commands.UpdateRestaurant;
