@@ -20,9 +20,9 @@ public class CreateRestaurantCommandValidator : AbstractValidator<CreateRestaura
             .EmailAddress().WithMessage("Please provide a valid email address.");
 
         RuleFor(dto => dto.ContactNumber)
-            .Matches(@"^\{{10\}}$").WithMessage("Please provide a valid phone number.");
+            .Matches(@"^\d{10}$").WithMessage("Please provide a valid phone number.");
 
         RuleFor(dto => dto.PostalCode)
-            .Matches(@"^\{{5\}}$").WithMessage("Please provide a valid postal code.");
+            .Matches(@"^\d{5}$").WithMessage("Please provide a valid postal code.");
     }
 }
