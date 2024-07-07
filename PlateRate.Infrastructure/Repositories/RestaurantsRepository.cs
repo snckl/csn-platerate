@@ -6,13 +6,24 @@ using PlateRate.Infrastructure.Persistence;
 namespace PlateRate.Infrastructure.Repositories;
 internal class RestaurantsRepository(PlateRateDbContext dbContext) : IRestaurantRepository
 {
-    public async Task<IEnumerable<Restaurant>> GetAllAsync()
+    public async Task<(IEnumerable<Restaurant>,int)> GetAllAsync(string? searchPhrase,int page, int size)
     {
-       var restaurants = await dbContext.Restaurants
-            .Include(r => r.Dishes)
-            .ToListAsync();
 
-       return restaurants;
+        var search = searchPhrase?.ToLower();
+
+        var baseQuery = dbContext.Restaurants
+             .Where(r => search == null || (r.Name.ToLower().Contains(search)
+             || r.Description.ToLower().Contains(search)));
+
+        var totalCount = await baseQuery.CountAsync();
+
+        var restaurants = await baseQuery
+             .Skip((page -1)*size)
+             .Take(size)
+             .Include(r => r.Dishes)
+             .ToListAsync();
+
+        return (restaurants,totalCount);
     }
 
     public async Task<Restaurant?> GetByIdAsync(int id)
