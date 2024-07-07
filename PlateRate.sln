@@ -3,18 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlateRate.API", "PlateRate\PlateRate.API.csproj", "{CA5737B5-9755-4A34-91C8-EAD7DA315EB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlateRate.API", "PlateRate\PlateRate.API.csproj", "{CA5737B5-9755-4A34-91C8-EAD7DA315EB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlateRate.Domain", "PlateRate.Domain\PlateRate.Domain.csproj", "{DA4628E5-09F3-4D5C-8553-4A0EF2C46AF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlateRate.Domain", "PlateRate.Domain\PlateRate.Domain.csproj", "{DA4628E5-09F3-4D5C-8553-4A0EF2C46AF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlateRate.Application", "PlateRate.Application\PlateRate.Application.csproj", "{C1BD2419-8B41-4319-83B6-07DC8BE478A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlateRate.Application", "PlateRate.Application\PlateRate.Application.csproj", "{C1BD2419-8B41-4319-83B6-07DC8BE478A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlateRate.Infrastructure", "PlateRate.Infrastructure\PlateRate.Infrastructure.csproj", "{761EE3E0-5B17-4043-839D-59BE96112A72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlateRate.Infrastructure", "PlateRate.Infrastructure\PlateRate.Infrastructure.csproj", "{761EE3E0-5B17-4043-839D-59BE96112A72}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AA2691C4-7826-4A5C-8B39-3D86FB792954}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlateRate.ApplicationTests", "PlateRate.ApplicationTests\PlateRate.ApplicationTests.csproj", "{3FD5A753-91F1-4830-BFC1-2BC936DBA689}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{761EE3E0-5B17-4043-839D-59BE96112A72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{761EE3E0-5B17-4043-839D-59BE96112A72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{761EE3E0-5B17-4043-839D-59BE96112A72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FD5A753-91F1-4830-BFC1-2BC936DBA689}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FD5A753-91F1-4830-BFC1-2BC936DBA689}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FD5A753-91F1-4830-BFC1-2BC936DBA689}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FD5A753-91F1-4830-BFC1-2BC936DBA689}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
