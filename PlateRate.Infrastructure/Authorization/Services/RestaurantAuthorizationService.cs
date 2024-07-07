@@ -2,6 +2,8 @@
 using PlateRate.Application.User;
 using PlateRate.Domain.Constants;
 using PlateRate.Domain.Entities;
+using PlateRate.Domain.Interfaces;
+using PlateRate.Infrastructure.Constants;
 
 namespace PlateRate.Infrastructure.Authorization.Services;
 public class RestaurantAuthorizationService(ILogger<RestaurantAuthorizationService> logger

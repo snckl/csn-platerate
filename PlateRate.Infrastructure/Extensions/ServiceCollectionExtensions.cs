@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PlateRate.Domain.Entities;
+using PlateRate.Domain.Interfaces;
 using PlateRate.Domain.Repositories;
 using PlateRate.Infrastructure.Authorization;
 using PlateRate.Infrastructure.Authorization.Services;
