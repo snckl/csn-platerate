@@ -12,7 +12,7 @@ public class CreateRestaurantCommandHandler(ILogger<CreateRestaurantCommandHandl
     public async Task<int> Handle(CreateRestaurantCommand request, CancellationToken cancellationToken)
     {
         var currentUser = userContext.GetCurrentUser();
-        logger.LogInformation("{Username} [{UserId}] Creating restaurant {@Restaurant}", currentUser.Email, currentUser.Id,request);
+        logger.LogInformation("{UserEmail} [{UserId}] Creating restaurant {@Restaurant}", currentUser.Email, currentUser.Id,request);
 
         var restaurant = mapper.Map<Restaurant>(request);
         restaurant.OwnerId = currentUser.Id;
