@@ -21,5 +21,10 @@ internal class PlateRateDbContext(DbContextOptions<PlateRateDbContext> options) 
             .WithOne()
             .HasForeignKey(d => d.RestaurantId);
 
+        modelBuilder.Entity<User>()
+            .HasMany(u => u.OwnedRestaurants)
+            .WithOne(r => r.Owner)
+            .HasForeignKey(f => f.OwnerId);
+
     }
 }
