@@ -78,7 +78,8 @@ internal class RestaurantSeeder(PlateRateDbContext dbContext) : IRestaurantSeede
                     City = "London",
                     Street = "Cork St 5",
                     PostalCode = "WC2N 5DU"
-                }
+                },
+                OwnerId = "d1f95bd1-86e3-4e6e-9bdb-f6f82c126cd3"
             },
             new ()
             {
@@ -93,7 +94,8 @@ internal class RestaurantSeeder(PlateRateDbContext dbContext) : IRestaurantSeede
                     City = "London",
                     Street = "Boots 193",
                     PostalCode = "W1F 8SR"
-                }
+                },
+                OwnerId = "d1f95bd1-86e3-4e6e-9bdb-f6f82c126cd3"
             }
         ];
 

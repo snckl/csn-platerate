@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using PlateRate.Domain.Entities;
 using PlateRate.Domain.Repositories;
 using PlateRate.Infrastructure.Authorization;
+using PlateRate.Infrastructure.Authorization.Services;
 using PlateRate.Infrastructure.Persistence;
 using PlateRate.Infrastructure.Repositories;
 using PlateRate.Infrastructure.Seeders;
@@ -24,6 +25,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IRestaurantSeeder, RestaurantSeeder>();
         services.AddScoped<IRestaurantRepository, RestaurantsRepository>();
         services.AddScoped<IDishRepository, DishesRepository>();
+        services.AddScoped<IRestaurantAuthorizationService, RestaurantAuthorizationService>();
         services.AddAuthorizationBuilder()
            .AddPolicy(PolicyNames.HasNationality,builder => builder.RequireClaim(AppClaimTypes.Nationality));
     }
